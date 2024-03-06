@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        /* Inline CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .todo-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .todo-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .dark-mode-toggle {
+            margin-top: 20px;
+        }
+
+        .top-con{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .todo-footer{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .todo-footer p{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top-con">
+        <h1>Todo List</h1>
+        <button onclick="toggleDarkMode()" class="dark-mode-toggle">Dark Mode</button>
+    </div>
+    <div class="todo-list">
+        <div class="todo-item">
+            <input type="checkbox" id="todo1">
+            <label for="todo1">Task 1</label>
+        </div>
+        <div class="todo-item">
+            <input type="checkbox" id="todo2">
+            <label for="todo2">Task 2</label>
+        </div>
+        <div class="todo-item">
+            <input type="checkbox" id="todo3">
+            <label for="todo3">Task 3</label>
+        </div>
+        <div class="todo-item">
+            <input type="checkbox" id="todo4">
+            <label for="todo4">Task 4</label>
+        </div>
+        <div class="todo-item">
+            <input type="checkbox" id="todo5">
+            <label for="todo5">Task 5</label>
+        </div>
+    </div>
+    <div class="todo-footer">
+        <span id="items-left">5 items left</span>
+        <p onclick="filter('all')">All</p>
+        <p onclick="filter('active')">Active</p>
+        <p onclick="filter('completed')">Completed</p>
+        <p onclick="clearCompleted()">Clear Completed</p>
+    </div>
+</div>
+
+<script>
+    // Inline JavaScript
+    let darkMode = false;
+
+    function toggleDarkMode() {
+        darkMode = !darkMode;
+        const body = document.body;
+        const container = document.querySelector('.container');
+
+        if (darkMode) {
+            body.style.backgroundColor = '#333';
+            body.style.color = '#fff';
+            container.style.backgroundColor = '#222';
+        } else {
+            body.style.backgroundColor = '#f0f0f0';
+            body.style.color = '#333';
+            container.style.backgroundColor = '#fff';
+        }
+    }
+
+    function filter(type) {
+        const itemsLeft = document.getElementById('items-left');
+        switch (type) {
+            case 'all':
+                itemsLeft.textContent = '5 items left';
+                break;
+            case 'active':
+                itemsLeft.textContent = '2 items left';
+                break;
+            case 'completed':
+                itemsLeft.textContent = '3 items left';
+                break;
+        }
+    }
+
+    function clearCompleted() {
+        alert('Clearing completed tasks...');
+    }
+</script>
+</body>
+</html>
